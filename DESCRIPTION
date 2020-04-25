@@ -1,0 +1,19 @@
+Package: cat
+Title: My cat for RPA with stock 
+Version: 0.2020.04.26
+Authors@R: 
+    person(given = "Jinhwan",
+           family = "Kim",
+           role = c("aut", "cre"),
+           email = "hwanistic@gmail.com")
+Description: Get stock information and send email for me.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.0
+Imports: 
+    rvest,
+    magrittr,
+    dplyr,
+    xml2
