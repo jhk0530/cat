@@ -2,6 +2,7 @@
 #' @description this will not include last day's information.
 #' @usage getFrgn('035420')
 #' @param code stockCode
+#' @param day how much day max 20
 #' @return data.frame with
 #' @import rvest
 #' @import dplyr
@@ -9,8 +10,9 @@
 #'
 #' @export
 
-getFrgn <- function(code = NULL){
+getFrgn <- function(code = NULL, day = 5){
   if(is.null(code)) stop("Code not given")
+  if(day > 20) stop("Maximum day is 20")
   url_frgn <- paste0('https://finance.naver.com/item/frgn.nhn?code=',code)
   frgnPage <- read_html(url_frgn, encoding = 'CP949')
   vals <- frgnPage %>%
@@ -31,5 +33,5 @@ getFrgn <- function(code = NULL){
   res <- res[,-1]
   colnames(res) <- c("종가", "전일비", "등락률", "거래량", "기관 매매량", "외국인 매매량", "보유주수", "보유율")
   res <- res %>% select(-"보유주수", -"보유율")
-  res
+  res[1:day,]
 }

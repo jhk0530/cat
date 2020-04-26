@@ -8,6 +8,8 @@ getFrgn('035420')
 }
 \arguments{
 \item{code}{stockCode}
+
+\item{day}{how much day max 20}
 }
 \value{
 data.frame with

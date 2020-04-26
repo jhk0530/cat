@@ -2,7 +2,12 @@
 
 export(getDailyFrgn)
 export(getFrgn)
+export(getKOSPI)
+export(getPerf)
 export(getPrice)
+export(mailMe)
+import(blastula)
 import(dplyr)
+import(knitr)
 import(rvest)
 import(xml2)

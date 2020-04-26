@@ -1,6 +1,6 @@
 Package: cat
 Title: My cat for RPA with stock 
-Version: 0.2020.04.26
+Version: 0.20.04
 Authors@R: 
     person(given = "Jinhwan",
            family = "Kim",
@@ -16,4 +16,6 @@ Imports:
     rvest,
     magrittr,
     dplyr,
-    xml2
+    xml2,
+    rmarkdown,
+    blastula

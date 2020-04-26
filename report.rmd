@@ -1,0 +1,88 @@
+---
+title: "report"
+output: blastula::blastula_email
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE)
+library(cat)
+```
+
+## Report for NAVER - KOSPI
+
+---
+
+당일 지수 정보
+
+```{r, echo = FALSE}
+KOSPI <- getKOSPI()
+KOSPI
+```
+
+---
+
+당일 거래정보
+
+```{r, echo = FALSE}
+v <- getPrice('035420')
+v <- c(v, getDailyFrgn('035420'))
+names(v)[length(v)] <- "외국인 매매량"
+v
+```
+
+---
+
+당일 종가 / 지수 값
+
+```{r, echo= FALSE}
+
+unname( v[1] / KOSPI[1] )
+
+```
+
+---
+
+최근 거래 추세
+
+```{r, echo = FALSE}
+tab <- getFrgn('035420', day = 20)
+tab[1:5,]
+```
+
+---
+
+최근 5일, 10일, 20일 평균값
+
+```{r, echo = FALSE}
+MA5 <- mean(as.numeric(tab[1:5,1]))
+
+MA10 <- mean(as.numeric(tab[1:10,1])) 
+
+MA20 <- mean(as.numeric(tab[1:20,1]))
+
+D5 <- v[1] - MA5
+D10 <- v[1] - MA10
+D20 <- v[1] - MA20
+
+MAs <- round(c(MA5, D5, D5/MA5*100, MA10, D10, D10/MA10*100, MA20, D20, D20/MA20*100), 0)
+
+names(MAs) = c('5','-','%','10','-','%','20','-','%')
+MAs
+
+```
+
+---
+
+기업 실적
+
+```{r, echo = FALSE}
+getPerf('035420')
+```
+
+---
+
+1. 외국인 매매
+2. 적당한 Beta
+3. 최근 급등락 여부
+4. 든든한 실적
